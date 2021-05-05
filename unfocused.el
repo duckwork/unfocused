@@ -26,19 +26,21 @@
 
 ;;; Code:
 
-(defvar unfocused-hooks nil
-  "The hooks to run when all Emacs frames are out of focus.")
+(defcustom unfocused-hook nil
+  "Normal hook run when all frames are unfocused."
+  :type 'hook
+  :group 'frames)
 
 (defun unfocused-run-hooks ()
-  ""
+  "Run hooks in `unfocused-hook' when no frames are focused."
   (when (seq-every-p #'null (mapcar #'frame-focus-state (frame-list)))
-    (run-hooks 'unfocused-hooks)))
+    (run-hooks 'unfocused-hook)))
 
+;;;###autoload
 (define-minor-mode unfocused-mode
-  "Toggle `unfocused-mode'.
-
+  "Toggle addition of `unfocused-hook' to `after-focus-change-function'.
 This global mode adds a hook to `after-focus-change-function'
-that runs `unfocused-hooks' iff no Emacs frame is in focus."
+that runs `unfocused-hook' iff no Emacs frame is in focus."
   :lighter " unfoc"
   :init-value nil
   :keymap nil
