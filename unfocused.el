@@ -1,10 +1,13 @@
 ;;; unfocused.el --- Run code when Emacs is unfocused -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2021 Case Duckworth
+;; This file can be freely used, reused, modified and distributed under
+;; the terms of the ISC License.
+
 ;; This file is NOT part of GNU Emacs.
 
 ;; Author: Case Duckworth <acdw@acdw.net>
-;; License: ISC
+;; SPDX-License-Identifier: ISC
 ;; Version: 0.1
 ;; Package-Requires: ((emacs "24.1"))
 ;; Keywords: 
