@@ -45,6 +45,7 @@ that runs `unfocused-hook' iff no Emacs frame is in focus."
   :init-value nil
   :keymap nil
   :global t
+  :group 'frames
   (if unfocused-mode
       (add-function :after after-focus-change-function #'unfocused-run-hooks)
     (remove-function after-focus-change-function #'unfocused-run-hooks)))
