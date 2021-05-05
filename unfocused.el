@@ -1,4 +1,4 @@
-;;; unfocused.el --- Run code when Emacs is unfocused -*- lexical-binding: t -*-
+;;; unfocused.el --- Run code when unfocused -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2021 Case Duckworth
 ;; This file can be freely used, reused, modified and distributed under
@@ -9,11 +9,20 @@
 ;; Author: Case Duckworth <acdw@acdw.net>
 ;; SPDX-License-Identifier: ISC
 ;; Version: 0.1
-;; Package-Requires: ((emacs "24.1"))
-;; Keywords: 
+;; Package-Requires: ((emacs "27.1"))
+;; Keywords: frames convenience
 ;; URL: https://github.com/duckwork/unfocused
 
 ;;; Commentary:
+
+;; Emacs 27 changed `focus-out-hook' to the (I'm sure better, but nonetheless
+;; more complicated) `after-focus-change-function', which is also more
+;; verbose.  `unfocused' implements a mode that brings back the old
+;; easy-to-write functionality, with a twist: `unfocused-mode' only runs its
+;; hook when /all/ Emacs frames are unfocused, instead of when any of them
+;; are.  Does it make that much of a difference?  I'm arguing "no."  If you
+;; think it does, this package may not be for you -- after all, it's easy
+;; enough to add a function to `after-focus-change-function'.
 
 ;;; Code:
 
@@ -38,4 +47,5 @@ that runs `unfocused-hooks' iff no Emacs frame is in focus."
       (add-function :after after-focus-change-function #'unfocused-run-hooks)
     (remove-function after-focus-change-function #'unfocused-run-hooks)))
 
+(provide 'unfocused)
 ;;; unfocused.el ends here
